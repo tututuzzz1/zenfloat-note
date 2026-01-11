@@ -1,4 +1,4 @@
-// background.js v1.0.18
+// background.js v1.0.19
 
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({

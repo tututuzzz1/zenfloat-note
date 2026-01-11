@@ -1,4 +1,4 @@
-// launcher.js v1.0.18
+// launcher.js v1.0.19
 
 let pipWindow = null;
 

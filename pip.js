@@ -1,9 +1,10 @@
-// pip.js v1.0.18
+// pip.js v1.0.19
 
 (function() {
   const editor = document.getElementById('editor');
   const status = document.getElementById('status');
   const charCount = document.getElementById('char-count');
+  const clearFormatBtn = document.getElementById('clear-format-btn');
   const themeBtn = document.getElementById('capture-btn');
   const exportBtn = document.getElementById('export-btn');
   const foldBtn = document.getElementById('fold-btn');
@@ -102,6 +103,24 @@
   window.addEventListener('beforeunload', () => {
     saveContent();
   });
+
+  // 一键去格式按钮（转换为纯文本）
+  if (clearFormatBtn) {
+    clearFormatBtn.onclick = (e) => {
+      e.preventDefault();
+      // 获取当前内容的纯文本
+      const plainText = editor.innerText;
+      // 清空并设置为纯文本（移除所有 HTML 格式）
+      editor.innerHTML = '';
+      editor.innerText = plainText;
+      // 触发保存
+      editor.dispatchEvent(new Event('input'));
+      if (status) status.innerText = 'FORMAT CLEARED';
+      setTimeout(() => {
+        if (status) status.innerText = 'SAVED';
+      }, 1500);
+    };
+  }
 
   // 折叠/展开逻辑
   if (foldBtn) {
